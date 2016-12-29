@@ -3,13 +3,13 @@ package main
 import "errors"
 
 type Result struct {
-	Id int
+	Id         int
 	PlayerName string
-	Result int
-	Time int
+	Result     int
+	Time       int
 }
 
-func (r Result) Validate() (error){
+func (r Result) Validate() error {
 	if r.Result <= 0 {
 		return errors.New("Result is required")
 	}
