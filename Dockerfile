@@ -6,8 +6,8 @@ ADD . /go/src/github.com/lukasz-pyrzyk/BestPlayers
 
 RUN go get gopkg.in/mgo.v2 & go get gopkg.in/yaml.v2 & go get gopkg.in/mgo.v2/internal/json & go get github.com/ant0ine/go-json-rest/rest
 
-RUN go install github.com/lukasz-pyrzyk/BestPlayers/Src
+RUN go install github.com/lukasz-pyrzyk/BestPlayers/api
 
-ENTRYPOINT /go/bin/BestPlayers
+ENTRYPOINT /go/bin/api
 
 EXPOSE 8080
