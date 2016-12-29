@@ -5,12 +5,12 @@ import "errors"
 type Result struct {
 	Id         int
 	PlayerName string
-	Result     int
+	Score      int
 	Time       int
 }
 
 func (r Result) Validate() error {
-	if r.Result <= 0 {
+	if r.Score <= 0 {
 		return errors.New("Result is required")
 	}
 	if r.Time <= 0 {
