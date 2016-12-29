@@ -1,0 +1,15 @@
+MongoDB:
+  image: mongo
+  ports:
+    - "27017:27017"
+  volumes:
+    - /srv/docker/mongodb:/var/lib/mongodb
+  restart: always
+Api:
+  image: lukaszpyrzyk/bestplayers
+  ports:
+    - 8080:8080
+  command: "-mongohost=MongoDB"
+  links:
+    - MongoDB
+  restart: always
