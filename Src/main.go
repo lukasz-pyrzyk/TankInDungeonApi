@@ -8,10 +8,10 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 var GlobalConfig *Config
-var store []Result
 
 func main() {
 	configFile := flag.String("config", "", "a configuration file to load")
@@ -21,7 +21,7 @@ func main() {
 	api := rest.NewApi()
 	api.Use(rest.DefaultDevStack...)
 	router, err := rest.MakeRouter(
-		rest.Get("/results", GetTopResults),
+		rest.Get("/results/:top", GetTopResults),
 		rest.Post("/results", PostResult),
 	)
 	if err != nil {
@@ -29,12 +29,22 @@ func main() {
 	}
 	api.SetApp(router)
 	log.Fatal(http.ListenAndServe(":8080", api.MakeHandler()))
-
-	store = make([]Result, 10, 20)
 }
 
 func GetTopResults(w rest.ResponseWriter, r *rest.Request) {
-	w.WriteJson(&store)
+	tops := r.PathParam("top")
+	if(tops == "") {
+		// todo return bad request
+	}
+
+	top, err := strconv.Atoi(tops)
+	if(err != nil) {
+		// too return bad request
+	}
+
+	manager := DbManager{}
+	scores := manager.Receive(top);
+	w.WriteJson(&scores)
 }
 
 func PostResult(w rest.ResponseWriter, r *rest.Request) {
@@ -51,7 +61,8 @@ func PostResult(w rest.ResponseWriter, r *rest.Request) {
 		return
 	}
 
-	store = append(store, newResult)
+	manager := DbManager{}
+	manager.Insert(&newResult)
 	w.WriteHeader(http.StatusCreated)
 }
 

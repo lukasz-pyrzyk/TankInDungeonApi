@@ -19,7 +19,7 @@ func (mgr DbManager) Insert(msg *Result) {
 	defer session.Close()
 }
 
-func (mgr DbManager) Receive() []Result {
+func (mgr DbManager) Receive(limit int) []Result {
 	session, err := mgo.Dial(GlobalConfig.Mongo.Host)
 	failOnError(err, "Unable to connect to MongoDB")
 
@@ -32,7 +32,7 @@ func (mgr DbManager) Receive() []Result {
 	messages := GlobalConfig.Mongo.Table
 
 	c := session.DB(database).C(messages)
-	err = c.Find(nil).Sort("-_id").Limit(50).All(&msg)
+	err = c.Find(nil).Sort("-score", "time").Limit(limit).All(&msg)
 
 	failOnError(err, "Unable to select from database")
 

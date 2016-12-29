@@ -3,7 +3,6 @@ package main
 import "errors"
 
 type Result struct {
-	Id         int
 	PlayerName string
 	Score      int
 	Time       int
