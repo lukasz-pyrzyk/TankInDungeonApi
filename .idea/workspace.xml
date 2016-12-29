@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c288de67-ef8b-4a13-9f3a-52bdd135c661" name="Default" comment="Added API for results">
+    <list default="true" id="c288de67-ef8b-4a13-9f3a-52bdd135c661" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -257,7 +257,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added API for results" />
     <MESSAGE value="Fixed paths" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed paths" />
+    <MESSAGE value="Improvements for workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improvements for workspace.xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
