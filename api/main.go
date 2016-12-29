@@ -4,19 +4,16 @@ import (
 	"flag"
 	"fmt"
 	"github.com/ant0ine/go-json-rest/rest"
-	yaml "gopkg.in/yaml.v2"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
 )
 
-var GlobalConfig *Config
+var DbHost *string
 
 func main() {
-	configFile := flag.String("config", "", "a configuration file to load")
+	DbHost = flag.String("mongohost", "", "a mongodb host")
 	flag.Parse()
-	loadConfiguration(*configFile)
 
 	api := rest.NewApi()
 	api.Use(rest.DefaultDevStack...)
@@ -44,7 +41,7 @@ func GetTopResults(w rest.ResponseWriter, r *rest.Request) {
 		return
 	}
 
-	manager := DbManager{}
+	manager := NewDbManager()
 	scores := manager.Receive(top);
 	w.WriteJson(&scores)
 }
@@ -63,19 +60,9 @@ func PostResult(w rest.ResponseWriter, r *rest.Request) {
 		return
 	}
 
-	manager := DbManager{}
+	manager := NewDbManager()
 	manager.Insert(&newResult)
 	w.WriteHeader(http.StatusCreated)
-}
-
-func loadConfiguration(cfgFile string) {
-	data, err := ioutil.ReadFile(cfgFile)
-	if err != nil {
-		e := err.Error()
-		panic(fmt.Sprintf("%s: %s", e, err))
-	}
-
-	yaml.Unmarshal(data, &GlobalConfig)
 }
 
 func failOnError(err error, msg string) {

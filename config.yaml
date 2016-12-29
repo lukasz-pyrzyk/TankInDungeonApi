@@ -1,4 +1,0 @@
-mongo:
-  host: http://hostname.com:8888
-  database: gameRanking
-  table: results
