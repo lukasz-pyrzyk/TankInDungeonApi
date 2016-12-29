@@ -33,13 +33,15 @@ func main() {
 
 func GetTopResults(w rest.ResponseWriter, r *rest.Request) {
 	tops := r.PathParam("top")
-	if(tops == "") {
-		// todo return bad request
+	if tops == "" {
+		rest.Error(w, "Top number is required", http.StatusBadRequest)
+		return
 	}
 
 	top, err := strconv.Atoi(tops)
-	if(err != nil) {
-		// too return bad request
+	if err != nil {
+		rest.Error(w, "Top number is invalid", http.StatusBadRequest)
+		return
 	}
 
 	manager := DbManager{}
