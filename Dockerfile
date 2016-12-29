@@ -8,6 +8,6 @@ RUN go get gopkg.in/mgo.v2 & go get gopkg.in/yaml.v2 & go get gopkg.in/mgo.v2/in
 
 RUN go install github.com/lukasz-pyrzyk/BestPlayers/api
 
-ENTRYPOINT /go/bin/api
+ENTRYPOINT ["/go/bin/api"]
 
 EXPOSE 8080
