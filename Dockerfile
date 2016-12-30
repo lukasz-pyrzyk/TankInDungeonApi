@@ -1,6 +1,10 @@
-FROM golang
+FROM golang:alpine
 
 MAINTAINER Lukasz Pyrzyk <lukasz.pyrzyk@gmail.com>
+
+# install git
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh
 
 ADD . /go/src/github.com/lukasz-pyrzyk/TankInDungeonApi
 
