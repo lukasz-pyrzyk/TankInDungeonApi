@@ -1,12 +1,10 @@
 MongoDB:
   image: mongo
-  ports:
-    - "27017:27017"
   volumes:
     - /srv/docker/mongodb:/var/lib/mongodb
   restart: always
 Api:
-  image: lukaszpyrzyk/TankInDungeonApi
+  image: lukaszpyrzyk/tankindungeonapi
   ports:
     - 8080:8080
   command: "-mongohost=MongoDB"
