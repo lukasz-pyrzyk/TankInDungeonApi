@@ -1,4 +1,4 @@
-#BestPlayers #
+#Tank in Dungeon API #
 
 Small and fast API for game [Tank in Dungeon](https://github.com/MrJaqbq/LudumDare36)
 

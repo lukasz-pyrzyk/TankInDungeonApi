@@ -6,7 +6,7 @@ MongoDB:
     - /srv/docker/mongodb:/var/lib/mongodb
   restart: always
 Api:
-  image: lukaszpyrzyk/bestplayers
+  image: lukaszpyrzyk/TankInDungeonApi
   ports:
     - 8080:8080
   command: "-mongohost=MongoDB"
