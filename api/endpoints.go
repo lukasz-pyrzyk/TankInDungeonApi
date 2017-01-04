@@ -57,7 +57,7 @@ func GetTimeResults(w rest.ResponseWriter, r *rest.Request) {
 	}
 
 	manager := NewDbManager()
-	scores := manager.Receive(top, "timeResults", "-time", "-score");
+	scores := manager.Receive(top, "timeResults", "time", "-score");
 	w.WriteJson(&scores)
 }
 
